@@ -22,20 +22,6 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 
-ssize_t	ft_strindex(char *str, char c)
-{
-	ssize_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*sub;
