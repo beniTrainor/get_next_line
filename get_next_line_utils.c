@@ -48,29 +48,23 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-void	ft_strcpy(char *dst, const char *src)
-{
-	size_t	i;
-
-	i = 1;
-	while (src[i - 1] != '\0')
-	{
-		dst[i - 1] = src[i - 1];
-		i++;
-	}
-	dst[i - 1] = '\0';
-}
-
 char	*ft_strdup(const char *s)
 {
 	size_t	len;
 	char	*dup;
+	size_t	i;
 
 	len = ft_strlen(s);
 	dup = malloc(sizeof(char) * (len + 1));
 	if (dup == NULL)
 		return (NULL);
-	ft_strcpy(dup, s);
+	i = 1;
+	while (s[i - 1] != '\0')
+	{
+		dup[i - 1] = s[i - 1];
+		i++;
+	}
+	dup[i - 1] = '\0';
 	return (dup);
 }
 
