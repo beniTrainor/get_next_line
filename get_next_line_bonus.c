@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btrainor <btrainor@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:10:22 by btrainor          #+#    #+#             */
-/*   Updated: 2026/11/05 18:50:21 by btrainor         ###   ########.fr       */
+/*   Updated: 2026/11/05 19:01:10 by btrainor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 
 char	*ft_free(char **buf)
 {
-	if (!*buf)
+	if (*buf)
 		free(*buf);
 	*buf = NULL;
 	return (NULL);
@@ -83,9 +83,9 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	stash = read_and_stash(fd, stash);
-	line = extract_line(stash);
-	stash = update_stash(stash);
+	stash[fd] = read_and_stash(fd, stash[fd]);
+	line = extract_line(stash[fd]);
+	stash[fd] = update_stash(stash[fd]);
 	return (line);
 }
 

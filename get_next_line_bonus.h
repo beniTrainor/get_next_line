@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: btrainor <btrainor@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:11:05 by btrainor          #+#    #+#             */
-/*   Updated: 2026/11/05 18:50:30 by btrainor         ###   ########.fr       */
+/*   Updated: 2026/11/05 18:57:55 by btrainor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 #  define BUFFER_SIZE 8
 # endif
 
-#ifndef MAX_FD
+# ifndef MAX_FD
+#  define MAX_FD 1024
+# endif
 
 # include <unistd.h>
 # include <stdlib.h>
