@@ -6,7 +6,7 @@
 /*   By: btrainor <btrainor@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:10:52 by btrainor          #+#    #+#             */
-/*   Updated: 2026/11/04 18:31:45 by btrainor         ###   ########.fr       */
+/*   Updated: 2026/11/05 17:04:45 by btrainor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	len;
 
+	if (!s)
+		return (0);
 	len = 0;
 	while (s[len] != '\0')
 		len++;
@@ -68,21 +70,20 @@ char	*ft_strdup(const char *s)
 	return (dup);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_free(char *s1, char *s2)
 {
-	char	*res;	
+	char	*res;
 	size_t	i;
 	size_t	len;
 
 	len = ft_strlen(s1) + ft_strlen(s2);
 	res = malloc(sizeof(char) * (len + 1));
 	if (res == NULL)
-		return (NULL);
+		return (ft_free(&s1));
 	i = 0;
-	while (*s1 != '\0')
+	while (s1 && s1[i] != '\0')
 	{
-		res[i] = *s1;
-		s1++;
+		res[i] = s1[i];
 		i++;
 	}
 	while (*s2 != '\0')
@@ -92,11 +93,14 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	res[i] = '\0';
+	free(s1);
 	return (res);
 }
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (!s)
+		return (NULL);
 	while (*s != (unsigned char)c && *s != '\0')
 		s++;
 	if (*s == (unsigned char)c)

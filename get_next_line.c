@@ -6,18 +6,25 @@
 /*   By: btrainor <btrainor@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:10:22 by btrainor          #+#    #+#             */
-/*   Updated: 2026/11/04 18:49:05 by btrainor         ###   ########.fr       */
+/*   Updated: 2026/11/05 17:04:37 by btrainor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <stdio.h>
 
+char	*ft_free(char **buf)
+{
+	if (!*buf)
+		free(*buf);
+	*buf = NULL;
+	return (NULL);
+}
+
 char	*read_and_stash(int fd, char *stash)
 {
 	ssize_t	bytes;
 	char	*buf;
-	char	*tmp;
 
 	buf = malloc(sizeof(char) * ((size_t)BUFFER_SIZE + 1));
 	if (!buf)
@@ -26,29 +33,19 @@ char	*read_and_stash(int fd, char *stash)
 	while (bytes > 0 && !ft_strchr(stash, '\n'))
 	{
 		bytes = read(fd, buf, BUFFER_SIZE);
-		if (bytes == -1 || (bytes == 0 && ft_strlen(stash) == 0))
+		if (bytes == -1)
 		{
 			free(buf);
-			free(stash);
-			return (NULL);
-		}
-		else if (bytes == 0 && ft_strlen(stash) > 0)
-		{
-			free(buf);
-			return (stash);
+			return (ft_free(&stash));
 		}
 		buf[bytes] = '\0';
-		tmp = stash;
-		stash = ft_strjoin(stash, buf);
+		stash = ft_strjoin_free(stash, buf);
 		if (!stash)
-		{
-			stash = tmp;
-			free(buf);
-			return (NULL);
-		}
-		free(tmp);
+			break ;
 	}
 	free(buf);
+	if (stash && !*stash)
+		return (ft_free(&stash));
 	return (stash);
 }
 
@@ -82,14 +79,10 @@ char	*update_stash(char *stash)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*stash = NULL;
+	static char	*stash;
 
-	if (!stash)
-	{
-		stash = ft_strdup("");
-		if (!stash)
-			return (NULL);
-	}
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	stash = read_and_stash(fd, stash);
 	line = extract_line(stash);
 	stash = update_stash(stash);
