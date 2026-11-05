@@ -6,7 +6,7 @@
 /*   By: btrainor <btrainor@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:10:22 by btrainor          #+#    #+#             */
-/*   Updated: 2026/11/05 17:04:37 by btrainor         ###   ########.fr       */
+/*   Updated: 2026/11/05 19:05:38 by btrainor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 char	*ft_free(char **buf)
 {
-	if (!*buf)
+	if (*buf)
 		free(*buf);
 	*buf = NULL;
 	return (NULL);
