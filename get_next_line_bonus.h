@@ -6,12 +6,12 @@
 /*   By: btrainor <btrainor@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:11:05 by btrainor          #+#    #+#             */
-/*   Updated: 2026/11/05 19:12:44 by btrainor         ###   ########.fr       */
+/*   Updated: 2026/11/09 15:34:16 by btrainor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 8
