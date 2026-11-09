@@ -6,7 +6,7 @@
 /*   By: btrainor <btrainor@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:11:05 by btrainor          #+#    #+#             */
-/*   Updated: 2026/11/05 19:06:07 by btrainor         ###   ########.fr       */
+/*   Updated: 2026/11/09 19:00:17 by btrainor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 100
 # endif
 
 # include <unistd.h>
